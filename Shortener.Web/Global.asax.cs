@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -7,6 +8,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using Shortener.Web.Infrastructure;
 
 namespace Shortener.Web
 {
@@ -14,7 +16,9 @@ namespace Shortener.Web
     {
         void Application_Start(object sender, EventArgs e)
         {
-            // Code that runs on application startup
+            
+            Database.SetInitializer(new DbInitializer());
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);            
