@@ -7,9 +7,9 @@ using Shortener.Web.Models;
 
 namespace Shortener.Web.Repository
 {
-    public class ShortUrlRepository : GenericRepository<ShortUrl>, IShortUrlRepository, IDisposable
+    public class UrlRepository : GenericRepository<ShortUrl>, IShortUrlRepository, IDisposable
     {
-        public ShortUrlRepository(AppDbContext context) : base(context)
+        public UrlRepository(AppDbContext context) : base(context)
         {
         }
 

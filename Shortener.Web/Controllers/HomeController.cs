@@ -13,7 +13,7 @@ namespace Shortener.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            using (var ctx = new ShortUrlRepository(AppDbContext.Create()))
+            using (var ctx = new UrlRepository(AppDbContext.Create()))
             {
                 var list = ctx.GetAll();
             }
