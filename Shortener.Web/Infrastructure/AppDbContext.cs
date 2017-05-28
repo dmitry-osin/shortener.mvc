@@ -33,6 +33,8 @@ namespace Shortener.Web.Infrastructure
 
         private static void BuildShortUrlModelTree(DbModelBuilder modelBuilder)
         {
+            modelBuilder.RegisterEntityType(typeof(ShortUrl));
+
             modelBuilder.Entity<ShortUrl>()
                 .ToTable("Urls");
 
@@ -47,6 +49,10 @@ namespace Shortener.Web.Infrastructure
             modelBuilder.Entity<ShortUrl>()
                 .Property(x => x.DateTime)
                 .IsRequired();
+
+            modelBuilder.Entity<ShortUrl>()
+                .Property(x => x.ShortLink)
+                .IsOptional();
 
             modelBuilder.Entity<ShortUrl>()
                 .Property(x => x.Description)
