@@ -4,7 +4,12 @@ using Shortener.Web.Models;
 
 namespace Shortener.Web.Infrastructure
 {
-    public class DbInitializer : DropCreateDatabaseIfModelChanges<AppDbContext>
+    // DropCreateDatabaseAlways<DataContext>
+    // DropCreateDatabaseIfModelChanges<DataContext>
+    // MigrateDatabaseToLatestVersion<DataContext, Configuration>
+    // CreateDatabaseIfNotExists<DataContext>
+
+    public sealed class DbInitializer : DropCreateDatabaseIfModelChanges<AppDbContext>
     {
         protected override void Seed(AppDbContext context)
         {
