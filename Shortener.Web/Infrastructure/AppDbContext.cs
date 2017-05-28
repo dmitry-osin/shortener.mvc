@@ -13,7 +13,7 @@ namespace Shortener.Web.Infrastructure
 
         #region [Constructor]
 
-        protected AppDbContext() : base("DefaultConnection")
+        public AppDbContext() : base("DefaultConnection")
         {
         }
 
