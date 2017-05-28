@@ -13,8 +13,6 @@ namespace Shortener.Web.Repository
     {
         private readonly AppDbContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;
-        // ReSharper disable once StaticMemberInGenericType
-        private static readonly object SyncRoot = new object();
         private bool _disposed;
 
         protected GenericRepository(AppDbContext context)
@@ -29,28 +27,19 @@ namespace Shortener.Web.Repository
         public TEntity Add(TEntity item)
         {
             if (item == null) throw new ArgumentNullException(nameof(item));
-            lock (SyncRoot)
-            {
-                return _dbSet.Add(item);
-            }
+            return _dbSet.Add(item);
         }
 
         public TEntity Attach(TEntity item)
         {
             if (item == null) throw new ArgumentNullException(nameof(item));
-            lock (SyncRoot)
-            {
-                return _dbSet.Attach(item);
-            }
+            return _dbSet.Attach(item);
         }
 
         public void AddRange(IEnumerable<TEntity> items)
         {
             if (items == null) throw new ArgumentNullException(nameof(items));
-            lock (SyncRoot)
-            {
-                _dbSet.AddRange(items);
-            }
+            _dbSet.AddRange(items);
         }
 
         public TEntity FindByKey(int id)
@@ -60,67 +49,45 @@ namespace Shortener.Web.Repository
             var value = Expression.Constant(id);
             var equal = Expression.Equal(prop, value);
             var lambda = Expression.Lambda<Func<TEntity, bool>>(equal, item);
-
-            lock (SyncRoot)
-            {
-                return GetAsNoTrackingQueryable().SingleOrDefault(lambda);
-            }
+            return GetAsNoTrackingQueryable().SingleOrDefault(lambda);
         }
 
         public IEnumerable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate)
         {
             if (predicate == null) throw new ArgumentNullException(nameof(predicate));
-            lock (SyncRoot)
-            {
-                return GetAsNoTrackingQueryable()
-                    .Where(predicate).ToArray();
-            }
+            return GetAsNoTrackingQueryable()
+                .Where(predicate).ToArray();
         }
 
         public IEnumerable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] paths)
         {
             if (predicate == null) throw new ArgumentNullException(nameof(predicate));
             if (paths == null) throw new ArgumentNullException(nameof(paths));
-            lock (SyncRoot)
-            {
-                var query = Include(paths);
-                return query.Where(predicate).ToArray();
-            }
+            var query = Include(paths);
+            return query.Where(predicate).ToArray();
         }
 
         public void Update(TEntity item)
         {
             if (item == null) throw new ArgumentNullException(nameof(item));
-            lock (SyncRoot)
-            {
-                _dbSet.AddOrUpdate(item);
-            }
+            _dbSet.AddOrUpdate(item);
         }
 
         public void Remove(TEntity item)
         {
             if (item == null) throw new ArgumentNullException(nameof(item));
-            lock (SyncRoot)
-            {
-                _dbSet.Remove(item);
-            }
+            _dbSet.Remove(item);
         }
 
         public void RemoveRange(IEnumerable<TEntity> items)
         {
             if (items == null) throw new ArgumentNullException(nameof(items));
-            lock (SyncRoot)
-            {
-                _dbSet.RemoveRange(items);
-            }
+            _dbSet.RemoveRange(items);
         }
 
         public int Commit()
         {
-            lock (SyncRoot)
-            {
-                return _dbContext.SaveChanges();
-            }
+            return _dbContext.SaveChanges();
         }
 
         #endregion
@@ -129,18 +96,12 @@ namespace Shortener.Web.Repository
 
         protected IQueryable<TEntity> GetAsQueryable()
         {
-            lock (SyncRoot)
-            {
-                return _dbSet;
-            }
+            return _dbSet;
         }
 
         protected IQueryable<TEntity> GetAsNoTrackingQueryable()
         {
-            lock (SyncRoot)
-            {
-                return _dbSet.AsNoTracking();
-            }
+            return _dbSet.AsNoTracking();
         }
 
         #endregion

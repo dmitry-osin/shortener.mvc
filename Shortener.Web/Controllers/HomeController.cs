@@ -13,9 +13,9 @@ namespace Shortener.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            using (var ctx = new ShortUrlRepository(new AppDbContext("")))
+            using (var ctx = new ShortUrlRepository(new AppDbContext()))
             {
-                
+                var list = ctx.FindBy(url => url.Link != null);
             }
             return View();
         }
