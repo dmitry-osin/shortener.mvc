@@ -9,9 +9,16 @@ namespace Shortener.Web.Repository
 {
     public class UrlRepository : GenericRepository<ShortUrl>, IShortUrlRepository, IDisposable
     {
+
+        #region [Constuctor]
+
         public UrlRepository(AppDbContext context) : base(context)
         {
         }
+
+        #endregion
+
+        #region [IShortUrlRepository Impl]
 
         public IEnumerable<ShortUrl> GetAll()
         {
@@ -29,5 +36,7 @@ namespace Shortener.Web.Repository
                 .Where(x => x.DateTime == time.ToString("d"))
                 .ToArray();
         }
+
+        #endregion
     }
 }
