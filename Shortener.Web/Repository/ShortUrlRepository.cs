@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Shortener.Web.Contracts;
 using Shortener.Web.Infrastructure;
 using Shortener.Web.Models;
@@ -14,17 +15,19 @@ namespace Shortener.Web.Repository
 
         public IEnumerable<ShortUrl> GetAll()
         {
-            throw new NotImplementedException();
+            return GetAsNoTrackingQueryable().ToArray();
         }
 
         public IEnumerable<ShortUrl> GetByCount(int count)
         {
-            throw new NotImplementedException();
+            return GetAsNoTrackingQueryable().Take(count);
         }
 
         public IEnumerable<ShortUrl> GetByDate(DateTime time)
         {
-            throw new NotImplementedException();
+            return GetAsNoTrackingQueryable()
+                .Where(x => x.DateTime == time.ToString("d"))
+                .ToArray();
         }
     }
 }

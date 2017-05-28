@@ -13,17 +13,18 @@ namespace Shortener.Web.Infrastructure
 
         #region [Constructor]
 
-        public AppDbContext() : base("DefaultConnection")
-        {
-        }
-
-        public AppDbContext(string nameOrConnectionString) : base(nameOrConnectionString)
+        private AppDbContext(string nameOrConnectionString) : base(nameOrConnectionString)
         {
         }
 
         #endregion
 
         #region [Methods]
+
+        public static AppDbContext Create(string nameOrConnectionString = "DefaultConnection")
+        {
+            return new AppDbContext(nameOrConnectionString);
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
