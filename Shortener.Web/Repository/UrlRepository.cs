@@ -33,7 +33,7 @@ namespace Shortener.Web.Repository
         public IEnumerable<ShortUrl> GetByDate(DateTime time)
         {
             return GetAsNoTrackingQueryable()
-                .Where(x => x.DateTime == time.ToString("d"))
+                .Where(x => x.DateTimeUtc == time)
                 .ToArray();
         }
 

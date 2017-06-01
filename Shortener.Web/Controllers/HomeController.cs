@@ -17,8 +17,8 @@ namespace Shortener.Web.Controllers
             using (var ctx = new UrlRepository(AppDbContext.Create()))
             {
                 var list = ctx.GetAll();
+                return View(list);
             }
-            return View();
         }
 
         [HttpGet]
@@ -35,9 +35,10 @@ namespace Shortener.Web.Controllers
             using (var repo = new UrlRepository(AppDbContext.Create()))
             {
                 repo.Add(url);
+                repo.Commit();
             }
 
-            return RedirectToAction("");
+            return RedirectToAction("Index");
         }
     }
 }

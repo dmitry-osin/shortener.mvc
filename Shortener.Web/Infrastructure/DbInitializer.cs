@@ -17,7 +17,7 @@ namespace Shortener.Web.Infrastructure
             context.ShortUrls.Add(new ShortUrl()
             {
                 ShortLink = "a12Zcx1D",
-                DateTime = DateTime.UtcNow.ToString("d"),
+                DateTimeUtc = DateTime.UtcNow,
                 Link = "http://google.com"
             });
 

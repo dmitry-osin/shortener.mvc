@@ -48,7 +48,7 @@ namespace Shortener.Web.Infrastructure
                 .IsRequired();
 
             modelBuilder.Entity<ShortUrl>()
-                .Property(x => x.DateTime)
+                .Property(x => x.DateTimeUtc)
                 .IsRequired();
 
             modelBuilder.Entity<ShortUrl>()
