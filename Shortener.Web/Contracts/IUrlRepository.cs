@@ -4,7 +4,7 @@ using Shortener.Web.Models;
 
 namespace Shortener.Web.Contracts
 {
-    public interface IShortUrlRepository : IDisposable
+    public interface IUrlRepository : IDisposable
     {
         IEnumerable<ShortUrl> GetAll();
         IEnumerable<ShortUrl> GetByCount(int count);

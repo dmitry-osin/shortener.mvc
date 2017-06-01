@@ -7,7 +7,7 @@ using Shortener.Web.Models;
 
 namespace Shortener.Web.Repository
 {
-    public class UrlRepository : GenericRepository<ShortUrl>, IShortUrlRepository, IDisposable
+    public class UrlRepository : GenericRepository<ShortUrl>, IUrlRepository, IDisposable
     {
 
         #region [Constuctor]
@@ -18,7 +18,7 @@ namespace Shortener.Web.Repository
 
         #endregion
 
-        #region [IShortUrlRepository Impl]
+        #region [IUrlRepository Impl]
 
         public IEnumerable<ShortUrl> GetAll()
         {
