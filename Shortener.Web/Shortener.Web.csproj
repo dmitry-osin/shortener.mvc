@@ -142,6 +142,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ShortUrlHelper.cs" />
     <Compile Include="Infrastructure\AppDbContext.cs" />
     <Compile Include="Infrastructure\DbInitializer.cs" />
     <Compile Include="Models\ShortUrl.cs" />

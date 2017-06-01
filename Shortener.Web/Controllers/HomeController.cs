@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Shortener.Web.Helper;
 using Shortener.Web.Infrastructure;
 using Shortener.Web.Models;
 using Shortener.Web.Repository;
@@ -25,7 +26,11 @@ namespace Shortener.Web.Controllers
         [Route("")]
         public ActionResult Create()
         {
-            return View(new ShortUrl());
+            var url = new ShortUrl()
+            {
+                ShortLink = ShortUrlHelper.GenerateUrl()
+            };
+            return View(url);
         }
 
         [HttpPost]
