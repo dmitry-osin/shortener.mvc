@@ -69,5 +69,16 @@ namespace Shortener.Web.Service
                 }
             });
         }
+
+        public Task<ShortUrl> GetByUrl(string url)
+        {
+            return Task.Run(() =>
+            {
+                using (var repo = new UrlRepository(AppDbContext.Create()))
+                {
+                    return repo.GetByUrl(url);
+                }
+            });
+        }
     }
 }

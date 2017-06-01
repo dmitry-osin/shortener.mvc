@@ -13,6 +13,7 @@ namespace Shortener.Web.Controllers
 {
     public class HomeController : Controller
     {
+        [Route("urls")]
         public async Task<ActionResult> List()
         {
             var service = new UrlService();
@@ -21,6 +22,7 @@ namespace Shortener.Web.Controllers
         }
 
         [HttpGet]
+        [Route("")]
         public ActionResult Create()
         {
             return View(new ShortUrl());
@@ -34,6 +36,20 @@ namespace Shortener.Web.Controllers
             await service.AddUrl(url);
 
             return RedirectToAction("List");
+        }
+
+
+        [Route("gt/{url}")]
+        public async Task<ActionResult> GoToUrl(string url)
+        {
+            if (url == null) throw new ArgumentNullException(nameof(url));
+            var service = new UrlService();
+            var redirectUrl = await service.GetByUrl(url);
+
+            if (redirectUrl == null)
+                return RedirectToAction("Create");
+
+            return Redirect(redirectUrl.Link);
         }
     }
 }

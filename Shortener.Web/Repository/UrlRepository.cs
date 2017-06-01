@@ -37,6 +37,11 @@ namespace Shortener.Web.Repository
                 .ToArray();
         }
 
+        public ShortUrl GetByUrl(string url)
+        {
+            return GetAsNoTrackingQueryable().FirstOrDefault(x => x.ShortLink.Equals(url));
+        }
+
         #endregion
     }
 }

@@ -9,5 +9,6 @@ namespace Shortener.Web.Contracts
         IEnumerable<ShortUrl> GetAll();
         IEnumerable<ShortUrl> GetByCount(int count);
         IEnumerable<ShortUrl> GetByDate(DateTime time);
+        ShortUrl GetByUrl(string url);
     }
 }

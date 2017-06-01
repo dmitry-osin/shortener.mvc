@@ -11,5 +11,6 @@ namespace Shortener.Web.Contracts
         Task DeleteRange(IEnumerable<ShortUrl> urls);
         Task<IEnumerable<ShortUrl>> GetByCount(int count = 10);
         Task<IEnumerable<ShortUrl>> GetAll();
+        Task<ShortUrl> GetByUrl(string url);
     }
 }
