@@ -29,6 +29,7 @@ namespace Shortener.Web.Controllers
         }
 
         [HttpPost]
+        [Route("")]
         public async Task<ActionResult> Create(ShortUrl url)
         {
             if (url == null) throw new ArgumentNullException(nameof(url));
