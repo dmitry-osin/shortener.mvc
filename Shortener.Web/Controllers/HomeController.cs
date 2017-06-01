@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Shortener.Web.Infrastructure;
 using Shortener.Web.Models;
 using Shortener.Web.Repository;
+using Shortener.Web.Service;
 
 namespace Shortener.Web.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
-        public ActionResult Index()
+        public async Task<ActionResult> List()
         {
-            using (var ctx = new UrlRepository(AppDbContext.Create()))
-            {
-                var list = ctx.GetAll();
-                return View(list);
-            }
+            var service = new UrlService();
+            var list = await service.GetAll();
+            return View(list);
         }
 
         [HttpGet]
@@ -28,17 +27,13 @@ namespace Shortener.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(ShortUrl url)
+        public async Task<ActionResult> Create(ShortUrl url)
         {
             if (url == null) throw new ArgumentNullException(nameof(url));
+            var service = new UrlService();
+            await service.AddUrl(url);
 
-            using (var repo = new UrlRepository(AppDbContext.Create()))
-            {
-                repo.Add(url);
-                repo.Commit();
-            }
-
-            return RedirectToAction("Index");
+            return RedirectToAction("List");
         }
     }
 }
