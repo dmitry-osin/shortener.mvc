@@ -9,6 +9,7 @@ namespace Shortener.Web.ViewModel
         public int Id { get; set; }
         [Required(ErrorMessage = "Field must be filled")]
         [Display(Name = "Link to redirect")]
+        [RegularExpression("^((http|https|ssh|file):\\/\\/)?(www[0-9]\\.)?(([A-Za-z0-9_-])+\\.{1})+([A-Za-z]{2,4}|\\<[^<>]+\\>)(\\/([A-Za-z0-9_-])+)*(\\/)?$", ErrorMessage = "Please enter correct url")]
         [StringLength(2048, ErrorMessage = "Length must be less than 2048 chars")]
         public string Link { get; set; }
         [Display(Name = "Short link")]
