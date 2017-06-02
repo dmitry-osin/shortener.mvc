@@ -150,6 +150,7 @@
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\UrlRepository.cs" />
     <Compile Include="Service\UrlService.cs" />
+    <Compile Include="ViewModel\ShortUrlViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
