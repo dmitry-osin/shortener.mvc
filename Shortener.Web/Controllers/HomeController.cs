@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Shortener.Web.Helper;
 using Shortener.Web.Infrastructure;
 using Shortener.Web.Models;
 using Shortener.Web.Repository;
 using Shortener.Web.Service;
+using Shortener.Web.ViewModel;
 
 namespace Shortener.Web.Controllers
 {
@@ -19,36 +21,37 @@ namespace Shortener.Web.Controllers
         {
             var service = new UrlService();
             var list = await service.GetAll();
-            return View(list);
+            var res = Mapper.Map<IEnumerable<ShortUrl>, IEnumerable<ShortUrlViewModel>>(list);
+            return View(res);
         }
 
         [HttpGet]
         [Route("")]
         public ActionResult Create()
         {
-            var url = new ShortUrl()
-            {
-                ShortLink = ShortUrlHelper.GenerateUrl()
-            };
-            return View(url);
+            var url = new ShortUrl {ShortLink = ShortUrlHelper.GenerateUrl()};
+            var res = Mapper.Map<ShortUrl, ShortUrlViewModel>(url);
+            return View(res);
         }
 
         [HttpPost]
         [Route("")]
-        public async Task<ActionResult> Create(ShortUrl url)
+        public async Task<ActionResult> Create(ShortUrlViewModel url)
         {
-            if (url == null) throw new ArgumentNullException(nameof(url));
-            var service = new UrlService();
-            await service.AddUrl(url);
-
-            return RedirectToAction("List");
+            if (ModelState.IsValid)
+            {
+                var service = new UrlService();
+                var res = Mapper.Map<ShortUrlViewModel, ShortUrl>(url);
+                await service.AddUrl(res);
+                return RedirectToAction("List");
+            }
+            return RedirectToAction("Create");
         }
 
 
         [Route("gt/{url}")]
         public async Task<ActionResult> GoToUrl(string url)
         {
-            if (url == null) throw new ArgumentNullException(nameof(url));
             var service = new UrlService();
             var redirectUrl = await service.GetByUrl(url);
 

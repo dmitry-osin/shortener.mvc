@@ -7,15 +7,16 @@ namespace Shortener.Web.ViewModel
     public class ShortUrlViewModel
     {
         public int Id { get; set; }
-        [Required]
-        [Description("Link to redirect")]
+        [Required(ErrorMessage = "Field must be filled")]
+        [Display(Name = "Link to redirect")]
         [StringLength(2048, ErrorMessage = "Length must be less than 2048 chars")]
         public string Link { get; set; }
-        [Description("Short link")]
+        [Display(Name = "Short link")]
         public string ShortLink { get; set; }
-        [Description("Link creating date and time")]
+        [Display(Name = "Link creating date and time")]
         public DateTime DateTimeUtc { get; set; }
-        [Description("Link description")]
+        [Display(Name = "Link description")]
+        [StringLength(256, ErrorMessage = "Length must be less than 256 chars")]
         public string Description { get; set; }
 
         public ShortUrlViewModel()
