@@ -20,23 +20,28 @@ namespace Shortener.Web.Helper
             {
                 _letters.Add(c);
             }
+
+            for (char c = 'a'; c <= 'z'; ++c)
+            {
+                _letters.Add(c);
+            }
         }
 
         public static string GenerateUrl()
         {
-            var partOne = new Random();
+            var rnd = new Random();
 
             var builder = new StringBuilder();
 
-            builder.Append(partOne.Next(0, 98));
-            builder.Append(_letters[partOne.Next(0, 25)]);
-            builder.Append(_letters[partOne.Next(0, 25)].ToString().ToLower());
-            builder.Append(partOne.Next(0, 98));
-            builder.Append(_letters[partOne.Next(0, 25)]);
-            builder.Append(_letters[partOne.Next(0, 25)].ToString().ToLower());
-            builder.Append(partOne.Next(0, 98));
-            builder.Append(_letters[partOne.Next(0, 25)]);
-            builder.Append(_letters[partOne.Next(0, 25)].ToString().ToLower());
+            builder.Append(rnd.Next(0, 98));
+            builder.Append(_letters[rnd.Next(0, 51)]);
+            builder.Append(_letters[rnd.Next(0, 51)]);
+            builder.Append(rnd.Next(0, 98));
+            builder.Append(_letters[rnd.Next(0, 51)]);
+            builder.Append(_letters[rnd.Next(0, 51)]);
+            builder.Append(rnd.Next(0, 98));
+            builder.Append(_letters[rnd.Next(0, 51)]);
+            builder.Append(_letters[rnd.Next(0, 51)]);
             builder.Append(DateTime.UtcNow.Year.ToString().Substring(2, 2));
 
             return builder.ToString();
