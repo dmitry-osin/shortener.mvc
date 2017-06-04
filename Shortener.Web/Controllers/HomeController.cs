@@ -49,7 +49,7 @@ namespace Shortener.Web.Controllers
         }
 
 
-        [Route("gt/{url}")]
+        [Route("g/{url}")]
         public async Task<ActionResult> GoToUrl(string url)
         {
             var service = new UrlService();
@@ -61,7 +61,7 @@ namespace Shortener.Web.Controllers
             return Redirect(redirectUrl.Link);
         }
 
-        [Route("dt/{url}")]
+        [Route("d/{url}")]
         public async Task<ActionResult> Details(string url)
         {
             var service = new UrlService();
