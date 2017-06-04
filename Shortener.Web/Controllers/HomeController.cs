@@ -60,5 +60,18 @@ namespace Shortener.Web.Controllers
 
             return Redirect(redirectUrl.Link);
         }
+
+        [Route("dt/{url}")]
+        public async Task<ActionResult> Details(string url)
+        {
+            var service = new UrlService();
+            var redirectUrl = await service.GetByUrl(url);
+
+            if (redirectUrl == null)
+                return RedirectToAction("Create");
+
+            var model = Mapper.Map<ShortUrl, ShortUrlViewModel>(redirectUrl);
+            return View(model);
+        }
     }
 }
