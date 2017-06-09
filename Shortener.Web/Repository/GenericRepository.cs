@@ -11,14 +11,14 @@ namespace Shortener.Web.Repository
 {
     public abstract class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private readonly AppDbContext _dbContext;
+        private readonly AppDbContext _context;
         private readonly DbSet<TEntity> _dbSet;
         private bool _disposed;
 
         protected GenericRepository(AppDbContext context)
         {
-            _dbContext = context;
-            _dbSet = _dbContext.Set<TEntity>();
+            _context = context;
+            _dbSet = _context.Set<TEntity>();
             EfConfigure();
         }
 
@@ -87,11 +87,11 @@ namespace Shortener.Web.Repository
 
         public int Commit()
         {
-            using (var transaction = _dbContext.Database.BeginTransaction())
+            using (var transaction = _context.Database.BeginTransaction())
             {
                 try
                 {
-                    var count = _dbContext.SaveChanges();
+                    var count = _context.SaveChanges();
                     transaction.Commit();
                     return count;
                 }
@@ -123,9 +123,9 @@ namespace Shortener.Web.Repository
 
         private void EfConfigure()
         {
-            _dbContext.Configuration.AutoDetectChangesEnabled = false;
-            _dbContext.Configuration.LazyLoadingEnabled = false;
-            _dbContext.Configuration.ProxyCreationEnabled = false;
+            _context.Configuration.AutoDetectChangesEnabled = false;
+            _context.Configuration.LazyLoadingEnabled = false;
+            _context.Configuration.ProxyCreationEnabled = false;
         }
 
         private IQueryable<TEntity> Include(params Expression<Func<TEntity, object>>[] paths)
@@ -145,7 +145,7 @@ namespace Shortener.Web.Repository
             {
                 if (disposing)
                 {
-                    _dbContext?.Dispose();
+                    _context?.Dispose();
                 }
             }
             _disposed = true;
