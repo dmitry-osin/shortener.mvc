@@ -163,6 +163,7 @@
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Contracts\IUrlRepository.cs" />
     <Compile Include="Contracts\IUrlService.cs" />
+    <Compile Include="Controllers\Api\UrlsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
