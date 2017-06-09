@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - Url Shortener</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/Images/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32" />
+    <link href="~/Content/Images/favicon-cut.ico" rel="icon" type="image/png" sizes="32x32" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body>
@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("ShRtNr", "List", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("ShoRTeNeR.ru ", "List", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -30,8 +30,10 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Shortener by Dmitry Osin</p>
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; @DateTime.Now.Year - Shortener by Dmitry Osin</p>
+            </div>
         </footer>
     </div>
 
