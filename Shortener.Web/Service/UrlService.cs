@@ -9,43 +9,45 @@ namespace Shortener.Web.Service
 {
     public class UrlService : IUrlService
     {
+        #region [IUrlService Impl]
+
         public async Task AddUrl(ShortUrl url)
         {
             await Task.Run(() =>
-            {
-                using (var repo = new UrlRepository(AppDbContext.Create()))
                 {
-                    repo.Add(url);
-                    repo.Commit();
-                }
-            })
-            .ConfigureAwait(false);
+                    using (var repo = new UrlRepository(AppDbContext.Create()))
+                    {
+                        repo.Add(url);
+                        repo.Commit();
+                    }
+                })
+                .ConfigureAwait(false);
         }
 
         public async Task DeleteUrl(ShortUrl url)
         {
             await Task.Run(() =>
-            {
-                using (var repo = new UrlRepository(AppDbContext.Create()))
                 {
-                    repo.Remove(url);
-                    repo.Commit();
-                }
-            })
-            .ConfigureAwait(false);
+                    using (var repo = new UrlRepository(AppDbContext.Create()))
+                    {
+                        repo.Remove(url);
+                        repo.Commit();
+                    }
+                })
+                .ConfigureAwait(false);
         }
 
         public async Task DeleteRange(IEnumerable<ShortUrl> urls)
         {
             await Task.Run(() =>
-            {
-                using (var repo = new UrlRepository(AppDbContext.Create()))
                 {
-                    repo.RemoveRange(urls);
-                    repo.Commit();
-                }
-            })
-            .ConfigureAwait(false);
+                    using (var repo = new UrlRepository(AppDbContext.Create()))
+                    {
+                        repo.RemoveRange(urls);
+                        repo.Commit();
+                    }
+                })
+                .ConfigureAwait(false);
         }
 
         public Task<IEnumerable<ShortUrl>> GetByCount(int count = 10)
@@ -80,5 +82,7 @@ namespace Shortener.Web.Service
                 }
             });
         }
+
+        #endregion
     }
 }

@@ -11,9 +11,15 @@ namespace Shortener.Web.Repository
 {
     public abstract class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
+        #region [Fields]
+
         private readonly AppDbContext _context;
         private readonly DbSet<TEntity> _dbSet;
         private bool _disposed;
+
+        #endregion
+
+        #region [Constructor]
 
         protected GenericRepository(AppDbContext context)
         {
@@ -21,6 +27,8 @@ namespace Shortener.Web.Repository
             _dbSet = _context.Set<TEntity>();
             EfConfigure();
         }
+
+        #endregion
 
         #region [IGenericRepository Impl]
 

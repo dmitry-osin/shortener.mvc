@@ -6,7 +6,7 @@ namespace Shortener.Web.Helper
 {
     public static class ShortUrlHelper
     {
-        private static List<Char> _letters;
+        private static List<char> _letters;
 
         static ShortUrlHelper()
         {
