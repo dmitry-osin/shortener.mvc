@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Shortener.Web.Contracts;
 using Shortener.Web.Infrastructure;
@@ -11,17 +12,30 @@ namespace Shortener.Web.Service
     {
         #region [IUrlService Impl]
 
-        public async Task AddUrl(ShortUrl url)
+        public Task<ShortUrl> AddUrl(ShortUrl url)
         {
-            await Task.Run(() =>
+            return Task.Run(() =>
+            {
+                using (var repo = new UrlRepository(AppDbContext.Create()))
                 {
-                    using (var repo = new UrlRepository(AppDbContext.Create()))
-                    {
-                        repo.Add(url);
-                        repo.Commit();
-                    }
-                })
-                .ConfigureAwait(false);
+                    var entity = repo.Add(url);
+                    repo.Commit();
+                    return entity;
+                }
+            });
+        }
+
+        public Task<ShortUrl> Get(int id)
+        {
+            return Task.Run(() =>
+            {
+                using (var repo = new UrlRepository(AppDbContext.Create()))
+                {
+                    var entity = repo.FindBy(url => url.Id == id).FirstOrDefault();
+                    repo.Commit();
+                    return entity;
+                }
+            });
         }
 
         public async Task DeleteUrl(ShortUrl url)

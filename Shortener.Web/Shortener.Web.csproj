@@ -165,6 +165,8 @@
     <Compile Include="Contracts\IUrlService.cs" />
     <Compile Include="Controllers\Api\UrlsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Dtos\ResultDto.cs" />
+    <Compile Include="Dtos\UrlDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
