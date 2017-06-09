@@ -31,12 +31,16 @@ namespace Shortener.Web.Controllers.Api
 
             var service = new UrlService();
             var url = await service.Get(id.Value);
+
+            if (url == null)
+                return NotFound(); 
+
             return Ok(Mapper.Map<ShortUrl, UrlDto>(url));
         }
 
         //POST api/urls
         [HttpPost]
-        public async Task<IHttpActionResult> CreateUrl([FromBody]UrlDto url) // Can be Post by Convention with PostUrl name
+        public async Task<IHttpActionResult> CreateUrl(UrlDto url) // Can be Post by Convention with PostUrl name
         {
             if (url == null)
                 return BadRequest("You must provide url to redirect");
