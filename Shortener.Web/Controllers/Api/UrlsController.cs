@@ -46,8 +46,12 @@ namespace Shortener.Web.Controllers.Api
                 return BadRequest("You must provide url to redirect");
 
             var service = new UrlService();
-            var entry = await service.AddUrl(Mapper.Map<UrlDto, ShortUrl>(url));
-            return Created($"{Request.RequestUri}/{entry.Id}", Mapper.Map<ShortUrl, UrlDto>(entry));
+
+            var shortUrl = Mapper.Map<UrlDto, ShortUrl>(url);
+            shortUrl.ShortLink = ShortUrlHelper.GenerateUrl();
+
+            var result = await service.AddUrl(shortUrl);
+            return Created($"{Request.RequestUri}/{result.Id}", Mapper.Map<ShortUrl, UrlDto>(result));
         }
     }
 }
