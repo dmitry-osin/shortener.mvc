@@ -87,7 +87,20 @@ namespace Shortener.Web.Repository
 
         public int Commit()
         {
-            return _dbContext.SaveChanges();
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    var count = _dbContext.SaveChanges();
+                    transaction.Commit();
+                    return count;
+                }
+                catch
+                {
+                    transaction.Rollback();
+                    return 0;
+                }
+            }
         }
 
         #endregion
