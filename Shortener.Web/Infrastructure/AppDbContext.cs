@@ -56,7 +56,7 @@ namespace Shortener.Web.Infrastructure
                 .IsOptional();
 
             modelBuilder.Entity<ShortUrl>()
-                .Property(x => x.Description)
+                .Property(x => x.Title)
                 .HasMaxLength(256)
                 .IsOptional();
         }

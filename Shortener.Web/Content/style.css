@@ -5,3 +5,8 @@
 .navbar-inverse .navbar-brand {
   color: #ffffff !important;
 }
+input.form-control {
+  font-size: 40px;
+  height: 60px;
+  width: 600px;
+}

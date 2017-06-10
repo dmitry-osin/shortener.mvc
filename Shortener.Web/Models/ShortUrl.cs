@@ -8,7 +8,7 @@ namespace Shortener.Web.Models
         public string Link { get; set; }
         public string ShortLink { get; set; }
         public DateTime DateTimeUtc { get; set; }
-        public string Description { get; set; }
+        public string Title { get; set; }
 
         public ShortUrl()
         {
@@ -25,7 +25,7 @@ namespace Shortener.Web.Models
             link = Link;
             shortLink = ShortLink;
             dateTime = DateTimeUtc;
-            description = Description;
+            description = Title;
         }
     }
 }

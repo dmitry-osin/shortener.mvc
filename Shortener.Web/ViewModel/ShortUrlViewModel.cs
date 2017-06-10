@@ -16,9 +16,9 @@ namespace Shortener.Web.ViewModel
         public string ShortLink { get; set; }
         [Display(Name = "Link creating date and time")]
         public DateTime DateTimeUtc { get; set; }
-        [Display(Name = "Link description")]
+        [Display(Name = "Link title")]
         [StringLength(256, ErrorMessage = "Length must be less than 256 chars")]
-        public string Description { get; set; }
+        public string Title { get; set; }
 
         public ShortUrlViewModel()
         {
@@ -29,13 +29,13 @@ namespace Shortener.Web.ViewModel
             out string link,
             out string shortLink,
             out DateTime dateTime,
-            out string description)
+            out string title)
         {
             id = Id;
             link = Link;
             shortLink = ShortLink;
             dateTime = DateTimeUtc;
-            description = Description;
+            title = Title;
         }
     }
 }
