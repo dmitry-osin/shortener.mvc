@@ -17,14 +17,10 @@ namespace Shortener.Web.Helper
         {
             _letters = new List<char>();
             for (char c = 'A'; c <= 'Z'; ++c)
-            {
                 _letters.Add(c);
-            }
 
             for (char c = 'a'; c <= 'z'; ++c)
-            {
                 _letters.Add(c);
-            }
         }
 
         public static string GenerateUrl()
@@ -33,16 +29,14 @@ namespace Shortener.Web.Helper
 
             var builder = new StringBuilder();
 
-            builder.Append(rnd.Next(0, 98));
             builder.Append(_letters[rnd.Next(0, 51)]);
+            builder.Append(rnd.Next(0, 9));
             builder.Append(_letters[rnd.Next(0, 51)]);
-            builder.Append(rnd.Next(0, 98));
+            builder.Append(rnd.Next(0, 9));
             builder.Append(_letters[rnd.Next(0, 51)]);
+            builder.Append(rnd.Next(0, 9));
             builder.Append(_letters[rnd.Next(0, 51)]);
-            builder.Append(rnd.Next(0, 98));
-            builder.Append(_letters[rnd.Next(0, 51)]);
-            builder.Append(_letters[rnd.Next(0, 51)]);
-            builder.Append(DateTime.UtcNow.Year.ToString().Substring(2, 2));
+            builder.Append(rnd.Next(0, 9));
 
             return builder.ToString();
         }
