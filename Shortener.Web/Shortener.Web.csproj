@@ -116,6 +116,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\favicon-cut.ico" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css">
+      <DependentUpon>style.less</DependentUpon>
+    </Content>
+    <Content Include="Content\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -132,6 +138,9 @@
       <SubType>Designer</SubType>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
+    <Content Include="Content\style.less" />
+    <Content Include="Content\_variables.less" />
+    <Content Include="Content\_overrides.less" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -146,7 +155,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Strings.en-US.designer.cs">
