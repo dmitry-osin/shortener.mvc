@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Shortener.Web.ViewModel
 {
@@ -24,6 +26,11 @@ namespace Shortener.Web.ViewModel
         {
             DateTimeUtc = DateTime.UtcNow;
         }
+
+        public string RedirectUri => $"{HttpContext.Current.Request.Url.Host}/g/{ShortLink}";
+        public string PlainLink => RedirectUri;
+        public string BbCode => $"[url={RedirectUri}]{Title ?? "ShortLink"}[/url]";
+        public string Html => $"<a href=\"{RedirectUri}\">{Title ?? "ShortLink"}</a>";
 
         public void Deconstruct(out int id,
             out string link,
