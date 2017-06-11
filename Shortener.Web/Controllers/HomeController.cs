@@ -16,6 +16,8 @@ namespace Shortener.Web.Controllers
 {
     public class HomeController : Controller
     {
+        #region [Action Methods]
+
         [Route("urls")]
         public async Task<ActionResult> List()
         {
@@ -40,14 +42,15 @@ namespace Shortener.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                HandleLinkPrefix(url);
+
                 var service = new UrlService();
                 var res = Mapper.Map<ShortUrlViewModel, ShortUrl>(url);
                 await service.AddUrl(res);
-                return RedirectToAction("Details", new {url = url.ShortLink});
+                return RedirectToAction("Details", new { url = url.ShortLink });
             }
             return RedirectToAction("Create");
         }
-
 
         [Route("g/{url}")]
         public async Task<ActionResult> GoToUrl(string url)
@@ -79,5 +82,18 @@ namespace Shortener.Web.Controllers
         {
             return Redirect("http://d-osin.ru");
         }
+
+        #endregion
+
+        #region [Helper Methods]
+
+        private static void HandleLinkPrefix(ShortUrlViewModel url)
+        {
+            if (!url.Link.StartsWith("http") && !url.Link.StartsWith("ftp") && !url.Link.StartsWith("https") &&
+                !url.Link.StartsWith("file"))
+                url.Link = $"http://{url.Link}";
+        }
+
+        #endregion
     }
 }
