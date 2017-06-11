@@ -73,5 +73,11 @@ namespace Shortener.Web.Controllers
             var model = Mapper.Map<ShortUrl, ShortUrlViewModel>(redirectUrl);
             return View(model);
         }
+
+        [Route("me")]
+        public ActionResult AboutMe()
+        {
+            return Redirect("http://d-osin.ru");
+        }
     }
 }
