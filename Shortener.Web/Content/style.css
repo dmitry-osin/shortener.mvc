@@ -148,3 +148,37 @@ body input.text-box {
   font-size: 30px;
   height: 56px;
 }
+/* Validation */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.label {
+  border: 1px solid #000;
+}
+.label-danger {
+  background-color: #d9534f;
+}
+.text-danger {
+  color: #ffffff;
+}
+.validation-summary-errors {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.field-validation-error {
+  border: 1px solid #000;
+  background-color: #d9534f;
+}
