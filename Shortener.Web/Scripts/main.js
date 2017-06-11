@@ -9,7 +9,7 @@ function show() {
     x.className = "show";
 
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 1500);
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 1300);
 }
 
 function copyToClipboard(elementId) {
