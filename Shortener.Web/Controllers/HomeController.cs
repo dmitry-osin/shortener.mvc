@@ -43,7 +43,7 @@ namespace Shortener.Web.Controllers
                 var service = new UrlService();
                 var res = Mapper.Map<ShortUrlViewModel, ShortUrl>(url);
                 await service.AddUrl(res);
-                return RedirectToAction("List");
+                return RedirectToAction("Details", new {url = url.ShortLink});
             }
             return RedirectToAction("Create");
         }
