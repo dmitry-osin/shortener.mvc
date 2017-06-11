@@ -38,6 +38,7 @@ namespace Shortener.Web.Controllers
 
         [HttpPost]
         [Route("")]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ShortUrlViewModel url)
         {
             if (ModelState.IsValid)
