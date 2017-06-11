@@ -161,13 +161,14 @@ body input.text-box {
   border-color: #ebccd1;
 }
 .label {
-  border: 1px solid #000;
+  border: 1px solid #a94442;
 }
 .label-danger {
   background-color: #d9534f;
 }
 .text-danger {
   color: #ffffff;
+  padding: 5px !important;
 }
 .validation-summary-errors {
   padding: 15px;
@@ -179,7 +180,7 @@ body input.text-box {
   border-color: #ebccd1;
 }
 .field-validation-error {
-  border: 1px solid #000;
+  border: 1px solid #a94442;
   background-color: #d9534f;
 }
 /* SnackBar*/
