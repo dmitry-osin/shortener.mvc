@@ -11,7 +11,7 @@
     
     <div class="form-group">
         <div class="col-md-12">
-            @Html.EditorFor(x => x.RedirectUri, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.EditorFor(x => x.RedirectUri, new { htmlAttributes = new { id = "plain", @class = "form-control", @readonly = "readonly", onclick = "copyToClipboard('plain')" } })
         </div>
     </div>
     
@@ -19,7 +19,7 @@
 
     <div class="form-group">
         <div class="col-md-12">
-            @Html.EditorFor(x => x.BbCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.EditorFor(x => x.BbCode, new { htmlAttributes = new { id = "bbcode", @class = "form-control", @readonly = "readonly", onclick = "copyToClipboard('bbcode')" } })
         </div>
     </div>
     
@@ -27,8 +27,13 @@
 
     <div class="form-group">
         <div class="col-md-12">
-            @Html.EditorFor(x => x.Html, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.EditorFor(x => x.Html, new { htmlAttributes = new { id = "html", @class = "form-control", @readonly = "readonly", onclick = "copyToClipboard('html')" } })
         </div>
     </div>
+    
+    <div id="snackbar">Short link was copied to clipboard</div>
 
 </div>
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/snackBar.js"></script>
