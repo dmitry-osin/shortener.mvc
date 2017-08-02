@@ -1,6 +1,7 @@
 # Shortener Web Application
 
-Application allows to short url. You can touch [demo](http://srtnr.ru). App using ASP.NET MVC5, EF 6, Less, Bootstrap, TypeScript 
+Shortener web app was created using ASP.NET MVC5, EF6, Less, Typescript, Bootstrap and allows to short url.
 
-Mail me [mailto:d@osin.pw](d@osin.pw)
-[d-osin.ru](http://d-osin.ru)
+You can watch demo on [srtnr.ru](http://srtnr.ru).
+
+Best regards, Dmitry O
